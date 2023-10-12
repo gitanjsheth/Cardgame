@@ -1000,7 +1000,7 @@ function declareWinner() {
     systemRound = Hand.solve(systemConvertedCards);
     winner = Hand.winners([playerRound, systemRound]);
 
-    if (winner.includes(playerRound) && winner.includes(systemRound)) {
+    if (winner.includes(playerRound) && winner.includes(systemRound) && (!playerWinner) && (!systemWinner)) {
         console.log(systemTokens);
         console.log(playerTokens);
         console.log(potTokens);
