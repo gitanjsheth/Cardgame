@@ -1,0 +1,635 @@
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  #game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #poker-table-big {
+    width: 100vw;
+    height: 100vh;
+    object-fit:contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  #poker-table {
+    width: 100vw;
+    height: 80vh;
+    object-fit:contain;
+    position: absolute;
+    top: 20vh;
+    left: 0;
+    z-index: -1;
+  }
+
+  #background {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -3;
+  }
+
+  #game-name {
+    width: 40vw;
+    height: 60vh;
+    position: absolute;
+    top: 10vh;
+    left: 30vw;
+  }
+  
+  .page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Dealer and Player Hand Styles */
+  .hand {
+    display: flex;
+    position: absolute;
+  }
+  
+  .back-hand img, .front-hand img {
+    position: absolute;
+  }
+  
+  #dealer-hand-back, #dealer-hand-front {
+    top: 20vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #player-hand-back, #player-hand-front {
+    bottom: 20vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Individual Card Styles */
+  #dealer-card-back1 {
+    left: -1.2vw;
+    top: -27vh;
+    width: 3vw;
+    height: auto;
+    transform: translateX(-50%) rotate(-15deg);
+  }
+
+  #dealer-card-back2 {
+    left: 1.2vw;
+    top: -27vh;
+    width: 3vw;
+    height: auto;
+    transform: translateX(-50%) rotate(15deg);
+  }
+
+  #dealer-card-front1 {
+    left: -2.5vw;
+    top: -30vh;
+    width: 6vw;
+    height: auto;
+    transform: translateX(-50%) rotate(-15deg);
+  }
+
+  #dealer-card-front2 {
+    left: 2.5vw;
+    top: -30vh;
+    width: 6vw;
+    height: auto;
+    transform: translateX(-50%) rotate(15deg);
+  }
+
+  #player-card-back1, #player-card-front1 {
+    left: -4vw;
+    top: 21vh;
+    width: 10vw;
+    height: auto;
+    transform: translateX(-50%) rotate(-15deg);
+  }
+
+  #player-card-back2, #player-card-front2 {
+    left: 4vw;
+    top: 21vh;
+    width: 10vw;
+    height: auto;
+    transform: translateX(-50%) rotate(15deg);
+  }
+  
+  /* Card Styles */
+  .card-img {
+    width: 8vw;
+    height: 12vw;
+  }
+
+  #player-tokens, #system-tokens, #game-tokens {
+    position: absolute;
+    left: 32vw;
+    top: 90vh;
+    width: 3vw;
+    height: auto;
+    z-index: 2;
+  }
+
+  #system-tokens {
+    top: 24vh;
+    z-index: 2;
+  }
+
+  #game-tokens {
+    top: 50vh;
+    left: 20vw;
+    width: 4vw;
+    z-index: 1;
+  }
+
+  #move-tokens-p, #move-tokens-s {
+    position: absolute;
+    width: 2vw;
+    top: 50vh;
+    left: 20vw;
+    height: auto;
+    z-index: 0;
+  }
+
+  #player-balance, #system-balance {
+    position: absolute;
+    left: 70vw;
+    top: 5vh;
+    width: 12vw;
+    height: auto;
+    padding: 1vh 1vh;
+    font-family: 'Arial', sans-serif;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.3vw;
+    line-height: 4vh;
+    background-color: #0dd865;
+    border: none;
+    border-radius: 1vw;
+  }
+
+  #system-balance {
+    left: 18vw;
+  }
+
+
+  #current-pot {
+    position: absolute;
+    text-align: left;
+    top: 55vh;
+    left: 18vw;
+    width: 6vw;
+    height: 3vh;
+    padding: 1vh 0.5vw;
+    font-family: 'Arial', sans-serif;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.3vw;
+    background-color: goldenrod;
+    border: none;
+    border-radius: 1vw;
+  }
+  
+  /* Button Styles */
+  #start-button {
+    width: 12vw;
+    height: 12vh;    
+    position: absolute;
+    top: 77vh;
+    left: 44vw; 
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  /* Other Styles */
+  #end-message {
+    font-size: 2vw;
+  }
+
+  #player-big-blind, #system-big-blind {
+    position: absolute;
+    left: 30vw;
+    top: 40vh;
+    width: 40vw;
+    height: auto;
+    padding: 1vh 1vh;
+    font-family: 'Arial', sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 3vw;
+    background-color: #5bfeb7;
+    border: none;
+    border-radius: 1vw;
+
+  }
+
+  #system-message, #winning-message, #winning-hand {
+    position: absolute;
+    left: 35vw;
+    top: 35vh;
+    width: 30vw;
+    height: auto;
+    padding: 1vh 1vh;
+    font-family: 'Arial', sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 2vw;
+    background-color: #5bfeb7;
+    border: none;
+    border-radius: 1vw;
+    z-index: 3;
+  }
+
+  #winning-hand {
+    background-color: #031392;
+    left: auto;
+    color: rgb(232, 232, 232);
+    padding-left: 1vw; padding-right: 1vw;
+    padding-top: 1vh; padding-bottom: 1vh;
+    width: auto;
+    top: 85vh;
+    font-weight: normal;
+
+  }
+
+  #dealer-img {
+    position: absolute;
+    top: 0vh;
+    width: auto;
+    height: 25vh;
+  }
+
+  #player-controls {
+    display: flex;
+    position: absolute;
+    left: 62vw;
+    top: 70vh;
+  }
+
+  #call, #fold, #raise {
+    height: 6vh;
+    margin-right: 0.8vw;
+    border-radius: 2vh;
+  }
+
+  #call {
+    width: 5.5vw;
+    padding: 1vh auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    background-color: #1c6884;  /* Custom blue for Call */
+    border: none;
+    border-radius: 1vw;
+    box-shadow: 0 1vh #123b4d;  /* Darker shade of your custom blue for shadow */
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  #call:hover {
+    background-color: #3089a1;  /* Lighter shade of your custom blue */
+    box-shadow: 0 0.5vh #123b4d;
+  }
+  
+  #call:active {
+    box-shadow: 0 0 #123b4d;
+    transform: translateY(0.5vh);
+  }
+  
+  #raise {
+    width: 6.5vw;
+    padding: 1vh auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    background-color: #6c1c84;  /* Custom purple for Raise */
+    border: none;
+    border-radius: 1vw;
+    box-shadow: 0 1vh #450f5a;  /* Darker shade of your custom purple for shadow */
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  #raise:hover {
+    background-color: #8e32a2;  /* Lighter shade of your custom purple */
+    box-shadow: 0 0.5vh #450f5a;
+  }
+  
+  #raise:active {
+    box-shadow: 0 0 #450f5a;
+    transform: translateY(0.5vh);
+  }
+  
+  #fold {
+    width: 6vw;
+    padding: 1vh auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    background-color: #84381c;  /* Custom brown for Fold */
+    border: none;
+    border-radius: 1vw;
+    box-shadow: 0 1vh #5b2913;  /* Darker shade of your custom brown for shadow */
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  #fold:hover {
+    background-color: #a65232;  /* Lighter shade of your custom brown */
+    box-shadow: 0 0.5vh #5b2913;
+  }
+  
+  #fold:active {
+    box-shadow: 0 0 #5b2913;
+    transform: translateY(0.5vh);
+  }
+
+  #raise-amt {
+    position: absolute;
+    top: 80vh;
+    left: 65vw;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    padding: 0.3vw 0.5vw;
+    padding-right: 0.1vw;
+    font-family: 'Arial', sans-serif;
+    color: #301538;
+    font-size: 1vw;
+    font-weight: bold;
+    background-color: rgb(200, 200, 200);
+    margin-right: 1vw;
+    outline: none;
+  }
+  
+  #raise-amount {
+    position: absolute;
+    top: 80vh;
+    left: 71vw;
+    width: 4vw;
+    height: auto;
+    border-radius: 5px;
+    padding: 0.1vw 0.5vw;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.4vw;
+    background-color: #8e32a2;
+    border: 1px solid #1c6884; /* or any color that fits your design */
+    border-radius: 0.5vw;
+    margin-right: 1vw;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  #raise-amount:focus {
+    border-color: #6c1c84; /* Adjust color based on focus */
+    box-shadow: 0 0 0.5vw #6c1c84; /* Optional: Add a glow effect */
+  }
+  
+  #all-in {
+    position: absolute;
+    top: 87vh;
+    left: 68vw;
+    width: 1.5vw;
+    height: 1.5vw;
+    cursor: pointer;
+    margin-right: 0.5vw;
+  }
+  
+  label {
+    position: absolute;
+    top: 87.3vh;
+    left: 70vw;
+    padding: 0.3vw;
+    font-family: 'Arial', sans-serif;
+    background-color: #5b2913;
+    color:white;
+    font-weight: bold;
+    font-size: 1vw;
+    cursor: pointer;
+  }
+
+  #community-cards {
+    display: flex;
+    position: absolute;
+    top: 42vh;
+    left: 30vw;
+    height: 25vh;
+  }
+
+  #community-card-1, #community-card-2, #community-card-3, #community-card-4, #community-card-5 {
+    margin: 0.3vw;
+  }
+
+  #nextRoundButton {
+    position: absolute;
+    left: 64%;
+    top: 70vh;
+    width: auto;
+    padding: 1vh auto;
+    font-family: 'Arial', sans-serif;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 2.5vw;
+    background-color: #f4cf3a;  /* Custom blue for Call */
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  
+  /* Media Query Example
+  @media (max-width: 600px) {
+  }
+  
+  @media (min-width: 1600px) {
+  } */
+  
+  @keyframes slideOutUp {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slideOutDown {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slideInDown {
+    0% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInUp {
+    0% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes appearOutOfAir {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes shrink {
+    0% {
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+    }
+    100% {
+      width: 100vw;
+      height: 80vh;
+      top: 20vh;
+      left: 0;
+    }
+  }
+  
+  @keyframes playerTokenMove {
+    0% {
+      transform: translateX(12vw) translateY(40vh);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes playerTokenReset {
+    0% {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(12vw) translateY(40vh);
+      opacity: 1;
+    }
+  }
+
+  @keyframes systemTokenMove {
+    0% {
+      transform: translateX(12vw) translateY(-26vh);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes systemTokenReset {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(12vw) translateY(-26vh);
+        opacity: 1;
+    }
+  }
+
+  @keyframes potHighlight {
+    0% {
+        height: 3vh;
+        width: 6vw;
+        left: 18vw;
+        top: 55vh;
+        font-size: 1.3vw;
+        background-color: goldenrod;
+    }
+    50% {
+        height: 3.5vh;
+        width: 7vw;
+        left: 17.5vw;
+        top: 54.5vh;
+        font-size: 1.5vw;
+        background-color: rgb(248, 179, 6);
+    }
+    100% {
+        height: 3vh;
+        width: 6vw;
+        left: 18vw;
+        top: 55vh;
+        font-size: 1.3vw;
+        background-color: goldenrod;
+    }
+  }
+
+  @keyframes blindDeclare {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes disappear {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

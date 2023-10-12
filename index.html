@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Texas Hold'em Poker</title>
+</head>
+<body>
+
+  <div id="game-container">
+    <img id="poker-table-big" src="./images/poker_table.png" alt="Poker Table Background">
+    <img id="background" src="./images/background.png" alt="Background" style="display: none;">
+    <img id="poker-table" src="./images/poker_table.png" alt="Poker Table Background" style="display: none;">
+    
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+      <img id="game-name" src="./images/game_name.png" alt="Texas Holdem Poker">
+      <img id="start-button" src="./images/play-now.png" alt="Play Now Button" onclick="startGame()">
+    </div>
+
+    <!-- Game Page -->
+    <div id="game-page" class="page">
+      <img id="dealer-img" src="./images/./dealer.png" alt="Dealer" style="display:none;"/>
+      
+      <div id="dealer-hand-back" class="back-hand" style="display:none;">
+        <img id="dealer-card-back1" src="./images/card-back.jpg" alt="Card Back" />
+        <img id="dealer-card-back2" src="./images/card-back.jpg" alt="Card Back" />
+      </div>
+
+      <div id="player-hand-back" class="back-hand" style="display:none;">
+        <img id="player-card-back1" src="./images/card-back.jpg" alt="Card Back" />
+        <img id="player-card-back2" src="./images/card-back.jpg" alt="Card Back" />
+      </div>
+
+      <div id="dealer-hand-front" class="front-hand" style="display:none;">
+        <img id="dealer-card-front1" alt="Dealer Card Front 1" />
+        <img id="dealer-card-front2" alt="Dealer Card Front 2" />
+      </div>
+
+      <div id="player-hand-front" class="front-hand" style="display:none;">
+        <img id="player-card-front1" alt="Player Card Front 1" />
+        <img id="player-card-front2" alt="Player Card Front 2" />
+      </div>
+
+      <div id="community-cards">
+        <img id="community-card-1" alt="Community Card 1" style="display:none;"/>
+        <img id="community-card-2" alt="Community Card 2" style="display:none;"/>
+        <img id="community-card-3" alt="Community Card 3" style="display:none;"/>
+        <img id="community-card-4" alt="Community Card 4" style="display:none;"/>
+        <img id="community-card-5" alt="Community Card 5" style="display:none;"/>
+      </div>
+
+      <div id="player-controls" style="display:none;">
+        <button id="call" >Call</button>
+        <button id="fold" >Fold</button>
+        <button id="raise" >Raise</button>
+      </div>
+
+      <div id="raise-controls" style="display:none;">
+        <label id="raise-amt">Raise Amt:</label>
+        <input type="number" id="raise-amount" value="0" min="0">
+        <input type="checkbox" id="all-in" name="all-in" onchange="allInOn()">
+        <label for="all-in">All In!</label>
+      </div>
+      
+      <div id="player-balance" style="display:none;"> Player Balance: $1000</div>
+      <div id="system-balance" style="display:none;"> System Balance: $1000</div>
+      
+      <div id="pot" style="display:none;">
+        <p id="current-pot">Pot: $0</p>
+      </div>
+
+      <label id="player-big-blind" style="display:none;">Player's Turn For Big Blind</label>
+      <label id="system-big-blind" style="display:none;">System's Turn For Big Blind</label>
+
+      <img id="system-tokens" style="display:none;" src="./images/poker_tokens.png" alt="System Tokens" />
+      <img id="player-tokens" style="display:none;" src="./images/poker_tokens.png" alt="Player Tokens" />
+      <img id="game-tokens" style="display:none;" src="./images/poker_tokens.png" alt="Game Tokens" />
+      <img id="move-tokens-p" style="display:none;" src="./images/one_poker_token.png" alt="Move Tokens Player" />
+      <img id="move-tokens-s" style="display:none;" src="./images/one_poker_token.png" alt="Move Tokens System" />
+
+      <div id="winning-message" style="display:none;"></div>
+      <div id="winning-hand" style="display:none;"></div>
+      <div id="system-message" style="display:none;"></div>
+
+      <button id="restartGame" style="display:none;">Go Back</button>
+
+      <button id="nextRoundButton" style="display:none;">Start Next Round</button>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pokersolver@2.1.4/pokersolver.min.js"></script>
+</body>
+</html>
